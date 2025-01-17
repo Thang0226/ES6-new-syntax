@@ -5,9 +5,12 @@ const products = [
 ];
 
 // Print product list
-products.map(product => {
-    console.log(`id: ${product.id}, Name: ${product.name}, Price: ${product.price}, Quantity: ${product.quantity}`);
-});
+const printProducts = (productList) => {
+    productList.map(product => {
+        console.log(`id: ${product.id}, Name: ${product.name}, Price: ${product.price}, Quantity: ${product.quantity}`);
+    });
+}
+printProducts(products);
 
 // Calculate total value
 const calculateTotalValue = (products) => {
@@ -15,4 +18,37 @@ const calculateTotalValue = (products) => {
 }
 console.log(calculateTotalValue(products));
 
-//
+// Filter by minPrice
+const filterByMinPrice = (products, minPrice) => {
+    return products.filter(product => product.price >= minPrice);
+}
+console.log(filterByMinPrice(products, 800));
+
+// Add new product
+const addProduct = product => {
+    products.push(product);
+}
+addProduct({id: 4, name: "Macbook", price: 1500, quantity: 8});
+printProducts(products);
+
+console.log();
+
+// Remove product by ID
+const removeProductById = (id) => {
+    return products.filter(product => product.id !== id);
+}
+newProducts = removeProductById(4);
+printProducts(newProducts);
+
+console.log();
+
+// Update product quantity
+const updateQuantity = (id, newQuantity) => {
+    products.map(product => {
+        if (product.id === id) {
+            product.quantity = newQuantity;
+        }
+    });
+}
+updateQuantity(1, 20);
+printProducts(products);
